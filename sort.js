@@ -7,13 +7,14 @@ init();
 function init() {
     standardSort();
     selectionSort();
-    // bubbleSort();
+    bubbleSort();
     // mergeSort();
 }
 
 
 
 // ### STANDARD ARRAY METHOD "SORT" ###
+// Time complexity: O()
 
 function standardSort() {
     const start = performance.now();
@@ -27,6 +28,7 @@ function standardSort() {
 
 
 // ### SELECTION SORT ###
+// Time complexity: O(n²)
 
 function selectionSort() {
     const start = performance.now();
@@ -55,11 +57,18 @@ function selectionSort() {
 
 
 // ### BUBBLE SORT ###
+// Time complexity: O(n)
 
 function bubbleSort() {
     const start = performance.now();
     
-    // CODE
+    for(let i = 0; i < arr.length; i++) {
+        for(let j = 0; j < arr.length - i - 1; j++) {
+            if(arr[j] > arr[j + 1]) {
+                [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+            }
+        }
+    }
 
     const end = performance.now();
     console.log('Elapsed time: ', (end - start).toFixed(2))
