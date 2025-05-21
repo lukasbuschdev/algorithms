@@ -1,14 +1,14 @@
-const arr = Array.from({ length: 100 }, (_, i) => i + 1);
+const arr = Array.from({ length: 100000 }, (_, i) => i + 1);
 arr.sort(() => Math.random() - 0.5);
 
 
 init();
 
 function init() {
-    // standardSort();
+    standardSort();
     selectionSort();
     // bubbleSort();
-    // insertionSort();
+    // mergeSort();
 }
 
 
@@ -21,7 +21,7 @@ function standardSort() {
     arr.sort((a, b) => a - b); // OR JUST -> arr.sort();
 
     const end = performance.now();
-    console.log('Elapsed time: ', (end - start).toFixed(2))
+    console.log('Standard sort time: ', (end - start).toFixed(2))
 }
 
 
@@ -39,16 +39,17 @@ function selectionSort() {
                 minIndex = j;                       // if true: set the index 'minIndex' to the current index 'j'
             }
 
-            if(minIndex !== i) {                    // check if: index 'minIndex' is not the same as the index 'i' of the current outer loop
-                let temp = arr[i];                  // save: current number 'arr[i]' in a temporary variable
-                arr[i] = arr[minIndex];             // set: number 'arr[i]' to number 'arr[minIndex]'
-                arr[minIndex] = temp;               // set: number 'arr[minIndex]' to temporary saved number 'temp' / 'arr[i]' 
-            }
+        }
+
+        if(minIndex !== i) {                        // check if: index 'minIndex' is not the same as the index 'i' of the current outer loop
+            let temp = arr[i];                      // save: current number 'arr[i]' in a temporary variable
+            arr[i] = arr[minIndex];                 // set: number 'arr[i]' to number 'arr[minIndex]'
+            arr[minIndex] = temp;                   // set: number 'arr[minIndex]' to temporary saved number 'temp' / 'arr[i]' 
         }
     }
 
     const end = performance.now();
-    console.log('Elapsed time: ', (end - start).toFixed(2))
+    console.log('Selection sort time: ', (end - start).toFixed(2))
 }
 
 
@@ -66,9 +67,9 @@ function bubbleSort() {
 
 
 
-// ### INSERTION SORT ###
+// ### MERGE SORT ###
 
-function insertionSort() {
+function mergeSort() {
     const start = performance.now();
     
     // CODE
