@@ -5,17 +5,21 @@ arr.sort(() => Math.random() - 0.5);
 init();
 
 function init() {
-    standardSort();
-    selectionSort();
-    insertionSort();
-    bubbleSort();
+    // standardSort();
+    // selectionSort();
+    // insertionSort();
+    // bubbleSort();
+    // quickSortFunction();
     // mergeSort();
 }
 
 
 
 // ### STANDARD ARRAY METHOD "SORT" ###
-// Time complexity: O()
+
+// Time complexity:     O(n log n)
+// Best case:           O(n)
+// Space complexity:    O(n)
 
 function standardSort() {
     const start = performance.now();
@@ -29,7 +33,9 @@ function standardSort() {
 
 
 // ### SELECTION SORT ###
-// Time complexity: O(n²)
+
+// Time complexity:     O(n²)
+// Space complexity:    O(1) -> (in-place)
 
 function selectionSort() {
     const start = performance.now();
@@ -56,7 +62,11 @@ function selectionSort() {
 
 
 // ### INSERTION SORT ###
-// Time complexity: O(n²)
+
+// Best case:           O(n)
+// Average:             O(n²)
+// Worst case:          O(n²)
+// Space complexity:    O(1) -> (in-place)
 
 function insertionSort() {
     const start = performance.now();
@@ -80,7 +90,11 @@ function insertionSort() {
 
 
 // ### BUBBLE SORT ###
-// Time complexity: O(n)
+
+// Best case:           O(n)
+// Average:             O(n²)
+// Worst case:          O(n²)
+// Space complexity:    O(1) -> (in-place)
 
 function bubbleSort() {
     const start = performance.now();
@@ -101,6 +115,9 @@ function bubbleSort() {
 
 // ### MERGE SORT ###
 
+// All cases:           O(n log n)
+// Space complexity:    O(n) -> (needs extra arrays)
+
 function mergeSort() {
     const start = performance.now();
     
@@ -108,4 +125,40 @@ function mergeSort() {
 
     const end = performance.now();
     console.log('Merge sort time: ', (end - start).toFixed(2))
+}
+
+
+
+// ### QUICK SORT ###
+
+function quickSortFunction() {
+    const start = performance.now();
+
+    const sorted = quickSort(arr);
+    
+    const end = performance.now();
+    console.log('Quick sort time: ', (end - start).toFixed(2))
+}
+
+// Best case:           O(n log n)
+// Average:             O(n log n)
+// Worst case:          O(n²)
+// Space complexity:    O(n) -> (not in-place)
+
+function quickSort(array) {
+    if(array.length <= 1) return array;
+
+    const pivot = array[0];
+    const left = [];
+    const right = [];
+
+    for(let i = 1; i < array.length; i++) {
+        if(array[i] < pivot) {
+            left.push(array[i]);
+        } else {
+            right.push(array[i]);
+        }
+    }
+
+    return [...quickSort(left), pivot, ...quickSort(right)];
 }
