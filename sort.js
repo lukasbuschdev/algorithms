@@ -10,7 +10,7 @@ function init() {
     // insertionSort();
     // bubbleSort();
     // quickSortFunction();
-    // mergeSort();
+    // mergeSortFunction();
 }
 
 
@@ -118,13 +118,38 @@ function bubbleSort() {
 // All cases:           O(n log n)
 // Space complexity:    O(n) -> (needs extra arrays)
 
-function mergeSort() {
+function mergeSortFunction() {
     const start = performance.now();
     
-    // CODE
+    const sorted = mergeSort(arr);
 
     const end = performance.now();
     console.log('Merge sort time: ', (end - start).toFixed(2))
+}
+
+function mergeSort(array) {
+    if(array.length <= 1) return array;
+
+    let mid = Math.floor(array.length / 2);
+
+    let left = mergeSort(array.slice(0, mid));
+    let right = mergeSort(array.slice(mid));
+
+    return merge(left, right);
+}
+
+function merge(left, right) {
+    let sortedArray = [];
+
+    while(left.length && right.length) {
+        if(left[0] < right[0]) {
+            sortedArray.push(left.shift());
+        } else {
+            sortedArray.push(right.shift());
+        }
+    }
+
+    return [...sortedArray, ...left, ...right];
 }
 
 
